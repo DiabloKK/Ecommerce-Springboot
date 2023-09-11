@@ -46,13 +46,13 @@ public class AdminConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/*", "/js/**", "/css/**", "/image/**").permitAll()
+                        .requestMatchers("/*", "/js/**", "/css/**", "/image/**", "/vendor/**").permitAll()
                         .requestMatchers("/admin/*").hasAuthority("ADMIN")
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/do-login")
-                        .defaultSuccessUrl("/admin/index")
+                        .defaultSuccessUrl("/index")
                         .permitAll()
                 )
                 .logout(log -> log
