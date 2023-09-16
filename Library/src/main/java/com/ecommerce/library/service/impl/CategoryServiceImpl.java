@@ -39,7 +39,7 @@ public class CategoryServiceImpl implements CategoryService {
         Category categoryUpdate = null;
         try {
             categoryUpdate = repo.findById(category.getId()).get();
-            categoryUpdate.setName(categoryUpdate.getName());
+            categoryUpdate.setName(category.getName());
             categoryUpdate.set_activated(category.is_activated());
             categoryUpdate.set_deleted(category.is_deleted());
         } catch (Exception e) {
@@ -62,5 +62,10 @@ public class CategoryServiceImpl implements CategoryService {
         category.set_activated(true);
         category.set_deleted(false);
         repo.save(category);
+    }
+
+    @Override
+    public List<Category> findAllByActivated() {
+        return repo.findAllByActivated();
     }
 }
