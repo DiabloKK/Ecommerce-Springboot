@@ -47,7 +47,8 @@ public class AdminConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/*", "/js/**", "/css/**", "/img/**", "/vendor/**").permitAll()
-                        .requestMatchers("/admin/*").hasAuthority("ADMIN")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")

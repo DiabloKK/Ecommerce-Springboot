@@ -54,9 +54,18 @@
                         <td th:text="${product.category.name}"></td>
                         <td th:text="${product.costPrice}"></td>
                         <td th:text="${product.currentQuantity}"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><img style="height: 40px; width: 40px;"
+                                 th:src="@{'data:image/jpg;base64,'+${product.image}}"></td>
+                        <td><a th:href="@{/update-product/{id} (id = ${product.id})}" class="btn btn-primary">Update</a>
+                        </td>
+                        <td>
+                            <a th:if="${product.activated == false}"
+                               th:href="@{/enable-product/{id} (id = ${product.id})}"
+                               class="btn btn-warning">Enabled</a>
+                            <a th:if="${product.activated == true}"
+                               th:href="@{delete-product/{id} (id = ${product.id})}"
+                               class="btn btn-danger">Delete</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

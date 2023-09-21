@@ -25,8 +25,8 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <form class="form-horizontal" th:action="@{/save-product}" method="post" enctype="multipart/form-data"
-                      th:object="${product}">
+                <form class="form-horizontal" th:action="@{/update-product/{id} (id = ${productDto.id})}" method="post" enctype="multipart/form-data"
+                      th:object="${productDto}">
                     <fieldset>
 
                         <!-- Form Name -->
@@ -79,7 +79,18 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="price">PRICE</label>
                             <div class="col-md-4">
-                                <input id="price" th:field="*{costPrice}" name="price" class="form-control input-md" required=""
+                                <input id="price" th:field="*{costPrice}" name="price" class="form-control input-md"
+                                       required=""
+                                       type="text">
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="sale">Sale Price</label>
+                            <div class="col-md-4">
+                                <input id="sale" th:field="*{salePrice}" name="sale" class="form-control input-md"
+                                       required=""
                                        type="text">
                             </div>
                         </div>
@@ -91,6 +102,7 @@
                                 <!-- File Button -->
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="imageProduct">Image Product</label>
+                                    <img style="height: 40px; width: 40px;" th:src="@{'data:image/jpg;base64,'+${productDto.image}}" alt="">
                                     <div class="col-md-4">
                                         <input id="imageProduct" name="imageProduct" class="input-file" type="file">
                                     </div>
@@ -119,35 +131,6 @@
 <a th:replace="fragments :: scroll"></a>
 
 <!-- Logout Modal-->
-
-<!--Change Name category Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalExample"
-     aria-hidden="true">
-    <form th:action="@{update-category}" method="put">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Category</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="idEdit" class="col-form-label">Id:</label>
-                        <input type="text" class="form-control" id="idEdit" name="id" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="nameEdit" class="col-form-label">Name:</label>
-                        <input type="text" class="form-control" id="nameEdit" name="name">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-<!--end-->
 
 <div th:replace="fragments :: script"></div>
 <script th:src="@{/js/categories.js}"></script>
