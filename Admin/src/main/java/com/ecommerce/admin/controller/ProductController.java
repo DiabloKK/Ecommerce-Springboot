@@ -2,9 +2,11 @@ package com.ecommerce.admin.controller;
 
 import com.ecommerce.library.dto.ProductDto;
 import com.ecommerce.library.model.Category;
+import com.ecommerce.library.model.Product;
 import com.ecommerce.library.service.CategoryService;
 import com.ecommerce.library.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +35,36 @@ public class ProductController {
         model.addAttribute("products", productDtoList);
         model.addAttribute("size", productDtoList.size());
         return "products";
+    }
+
+    @GetMapping("/products/{pageNo}")
+    public String productsPage(@PathVariable("pageNo") int pageNo, Model model, Principal principal) {
+        if(principal == null) {
+            return "redirect:/login";
+        }
+        Page<Product> products = productService.pageProducts(pageNo);
+        model.addAttribute("title", "Manage Product");
+        model.addAttribute("size", products.getSize());
+        model.addAttribute("totalPages", products.getTotalPages());
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("products", products);
+        return "products";
+    }
+
+    @GetMapping("/search-result/{pageNo}")
+    public String searchProducts(@PathVariable("pageNo") int pageNo,
+                                 @RequestParam("keyword") String keyword,
+                                 Model model, Principal principal) {
+        if(principal == null) {
+            return "redirect:/login";
+        }
+        Page<Product> products = productService.searchProducts(pageNo, keyword);
+        model.addAttribute("title", "Search Result");
+        model.addAttribute("products", products);
+        model.addAttribute("size", products.getSize());
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", products.getTotalPages());
+        return "result-products";
     }
 
     @GetMapping("/add-product")
