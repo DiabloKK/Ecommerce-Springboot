@@ -34,6 +34,7 @@ public class ProductController {
         model.addAttribute("title", "Manage Product");
         model.addAttribute("products", productDtoList);
         model.addAttribute("size", productDtoList.size());
+        model.addAttribute("currentPage", 0);
         return "products";
     }
 
@@ -42,7 +43,7 @@ public class ProductController {
         if(principal == null) {
             return "redirect:/login";
         }
-        Page<Product> products = productService.pageProducts(pageNo);
+        Page<ProductDto> products = productService.pageProducts(pageNo);
         model.addAttribute("title", "Manage Product");
         model.addAttribute("size", products.getSize());
         model.addAttribute("totalPages", products.getTotalPages());
@@ -58,7 +59,7 @@ public class ProductController {
         if(principal == null) {
             return "redirect:/login";
         }
-        Page<Product> products = productService.searchProducts(pageNo, keyword);
+        Page<ProductDto> products = productService.searchProducts(pageNo, keyword);
         model.addAttribute("title", "Search Result");
         model.addAttribute("products", products);
         model.addAttribute("size", products.getSize());
@@ -89,7 +90,7 @@ public class ProductController {
             e.printStackTrace();
             attributes.addFlashAttribute("error", "Failed to add!");
         }
-        return "redirect:/products";
+        return "redirect:/products/0";
     }
 
     @GetMapping("/update-product/{id}")
@@ -113,12 +114,11 @@ public class ProductController {
         try {
             productService.update(imageProduct, productDto);
             attributes.addFlashAttribute("success", "Update successfully!");
-
         } catch (Exception e) {
             e.printStackTrace();
             attributes.addFlashAttribute("error", "Failed to update!");
         }
-        return "redirect:/products";
+        return "redirect:/products/0";
     }
 
     @RequestMapping(value = "/enable-product/{id}", method = {RequestMethod.PUT, RequestMethod.GET})
@@ -130,7 +130,7 @@ public class ProductController {
             e.printStackTrace();
             attributes.addFlashAttribute("error", "Failed to enabled!");
         }
-        return "redirect:/products";
+        return "redirect:/products/0";
     }
 
     @RequestMapping(value = "/delete-product/{id}", method = {RequestMethod.PUT, RequestMethod.GET})
@@ -142,6 +142,6 @@ public class ProductController {
             e.printStackTrace();
             attributes.addFlashAttribute("error", "Failed to deleted");
         }
-        return "redirect:/products";
+        return "redirect:/products/0";
     }
 }

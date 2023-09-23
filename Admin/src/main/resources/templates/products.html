@@ -64,11 +64,11 @@
                         <td><a th:href="@{/update-product/{id} (id = ${product.id})}" class="btn btn-primary">Update</a>
                         </td>
                         <td>
-                            <a th:if="${product.is_activated == false}"
+                            <a th:if="${product.activated == false}"
                                th:href="@{/enable-product/{id} (id = ${product.id})}"
                                class="btn btn-warning">Enabled</a>
-                            <a th:if="${product.is_activated == true}"
-                               th:href="@{delete-product/{id} (id = ${product.id})}"
+                            <a th:if="${product.activated == true}"
+                               th:href="@{/delete-product/{id} (id = ${product.id})}"
                                class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
@@ -78,7 +78,7 @@
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li th:if="${currentPage != 0}" class="page-item">
-                            <a class="page-link" th:href="@{'/products/' + ${currentPage - 1}}">Previous</a>
+`                            <a class="page-link" th:href="@{'/products/' + ${currentPage - 1}}">Previous</a>
                         </li>
                         <li th:each="i : ${#numbers.sequence(1,totalPages)}"
                             th:classappend="${currentPage == i-1 ? 'active' : ''}" class="page-item">
@@ -137,7 +137,7 @@
 <!--Change Name category Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalExample"
      aria-hidden="true">
-    <form th:action="@{update-category}" method="put">
+    <form th:action="@{/update-category}" method="put">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
