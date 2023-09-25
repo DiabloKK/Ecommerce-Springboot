@@ -14,17 +14,17 @@
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+    <link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <!-- Site CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" th:href="@{/css/custom.css}">
 </head>
 <body>
 <!-- Start Main Top -->
@@ -140,19 +140,19 @@
             <li class="cart-box">
                 <ul class="cart-list">
                     <li>
-                        <a href="#" class="photo"><img src="images/Lobster 02 - Lobster rolls.jpg" class="cart-thumb"
+                        <a href="#" class="photo"><img th:src="@{/images/Lobster 02 - Lobster rolls.jpg}" class="cart-thumb"
                                                        alt=""/></a>
                         <h6><a href="#">Lobster rolls </a></h6>
                         <p>1 - <span class="price">$80.00</span></p>
                     </li>
                     <li>
-                        <a href="#" class="photo"><img src="images/Octopus 05 - Octopus with Black Bean Pear Sauce.jpg"
+                        <a href="#" class="photo"><img th:src="@{/images/Octopus 05 - Octopus with Black Bean Pear Sauce.jpg}"
                                                        class="cart-thumb" alt=""/></a>
                         <h6><a href="#">Octopus with Black Bean</a></h6>
                         <p>1 - <span class="price">$60.00</span></p>
                     </li>
                     <li>
-                        <a href="#" class="photo"><img src="images/Crab 02 - Crab Toast.jpg" class="cart-thumb" alt=""/></a>
+                        <a href="#" class="photo"><img th:src="@{/images/Crab 02 - Crab Toast.jpg}" class="cart-thumb" alt=""/></a>
                         <h6><a href="#">Crab Toast</a></h6>
                         <p>1 - <span class="price">$40.00</span></p>
                     </li>
@@ -230,47 +230,47 @@
     <div class="main-instagram owl-carousel owl-theme">
         <div class="item">
             <div class="ins-inner-box">
-                <a href="index.html"><img src="images/Fish 01 - Fish Tacos.jpg"
+                <a href="index.html"><img th:src="@{/images/Fish 01 - Fish Tacos.jpg}"
                                           alt=""/></a>
 
             </div>
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="images/instagram-img-02.jpg" alt=""/>
+                <img th:src="@{/images/instagram-img-02.jpg}" alt=""/>
             </div>
         </div>
         <div class="item">
             <div class="ins-inner-box">
                 <a href="index.html"><img
-                        src="images/Fish 04 - Red Pepper & Parmesan Tilapia.jpg"
+                        th:src="@{/images/Fish 04 - Red Pepper & Parmesan Tilapia.jpg}"
                         alt=""/></a>
             </div>
         </div>
         <div class="item">
             <div class="ins-inner-box">
                 <a href="index.html"><img
-                        src="images/Fish 05 - Almond-Topped Fish.jpg" alt=""/></a>
+                        th:src="@{/images/Fish 05 - Almond-Topped Fish.jpg}" alt=""/></a>
             </div>
         </div>
         <div class="item">
             <div class="ins-inner-box">
                 <a href="index.html"><img
-                        src="images/Shrimp 03 - Shrimp Tostadas with Avocado Salsa.jpg"
+                        th:src="@{/images/Shrimp 03 - Shrimp Tostadas with Avocado Salsa.jpg}"
                         alt=""/></a>
             </div>
         </div>
         <div class="item">
             <div class="ins-inner-box">
                 <a href="index.html"><img
-                        src="images/Shrimp 08 - Grilled Shrimp and Chorizo Appetizers.jpg"
+                        th:src="@{/images/Shrimp 08 - Grilled Shrimp and Chorizo Appetizers.jpg}"
                         alt=""/></a>
             </div>
         </div>
         <div class="item">
             <div class="ins-inner-box">
                 <a href="index.html"><img
-                        src="images/Octopus 06 - Red Wine–Braised Baby Octopus with Black Olives.jpg"
+                        th:src="@{/images/Octopus 06 - Red Wine–Braised Baby Octopus with Black Olives.jpg}"
                         alt=""/></a>
             </div>
         </div>
@@ -335,21 +335,21 @@
 
 <div th:fragment="script">
     <!-- ALL JS FILES -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
     <!-- ALL PLUGINS -->
-    <script src="js/jquery.superslides.min.js"></script>
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/inewsticker.js"></script>
-    <script src="js/bootsnav.js."></script>
-    <script src="js/images-loded.min.js"></script>
-    <script src="js/isotope.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/baguetteBox.min.js"></script>
-    <script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
+    <script th:src="@{/js/jquery.superslides.min.js}"></script>
+    <script th:src="@{/js/bootstrap-select.js}"></script>
+    <script th:src="@{/js/inewsticker.js}"></script>
+    <script th:src="@{/js/bootsnav.js}"></script>
+    <script th:src="@{/js/images-loded.min.js}"></script>
+    <script th:src="@{/js/isotope.min.js}"></script>
+    <script th:src="@{/js/owl.carousel.min.js}"></script>
+    <script th:src="@{/js/baguetteBox.min.js}"></script>
+    <script th:src="@{/js/form-validator.min.js}"></script>
+    <script th:src="@{/js/contact-form-script.js}"></script>
+    <script th:src="@{/js/custom.js}"></script>
 </div>
 
 </body>
