@@ -23,7 +23,7 @@ public class HomeController {
 
     @RequestMapping(value = {"/index", "/"}, method = RequestMethod.GET)
     public String home(Model model) {
-        return "index";
+        return "home";
     }
 
     @GetMapping("/home")

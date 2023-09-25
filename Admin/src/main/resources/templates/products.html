@@ -34,7 +34,7 @@
                 <div th:if="${size == 0}">
                     <p>No products in shop</p>
                 </div>
-                <a class="btn btn-primary" th:href="@{/add-product}">Add New Product</a>
+                <a class="btn btn-primary mt-3 mb-3" th:href="@{/add-product}">Add New Product</a>
                 <div th:if="${success}" class="text-center alert alert-success">
                     <p th:text="${success}"></p>
                 </div>
@@ -78,7 +78,7 @@
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li th:if="${currentPage != 0}" class="page-item">
-`                            <a class="page-link" th:href="@{'/products/' + ${currentPage - 1}}">Previous</a>
+                            <a class="page-link" th:href="@{'/products/' + ${currentPage - 1}}">Previous</a>
                         </li>
                         <li th:each="i : ${#numbers.sequence(1,totalPages)}"
                             th:classappend="${currentPage == i-1 ? 'active' : ''}" class="page-item">
