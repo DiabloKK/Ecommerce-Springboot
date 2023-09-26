@@ -6,6 +6,7 @@ import com.ecommerce.library.model.Product;
 import com.ecommerce.library.service.CategoryService;
 import com.ecommerce.library.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,6 +52,28 @@ public class ProductController {
         model.addAttribute("category", category);
         model.addAttribute("products", products);
         return "products-in-category";
+    }
+
+    @GetMapping("/high-price")
+    public String filterHighPrice(Model model) {
+        List<Category> categories = categoryService.findAllByActivated();
+        List<CategoryDto> categoryDtoList = categoryService.getCategoryAndProduct();
+        List<Product> products = productService.filterHighPrice();
+        model.addAttribute("categoryDtoList", categoryDtoList);
+        model.addAttribute("products", products);
+        model.addAttribute("categories", categories);
+        return "filter-high-price";
+    }
+
+    @GetMapping("/low-price")
+    public String filterLowPrice(Model model) {
+        List<Category> categories = categoryService.findAllByActivated();
+        List<CategoryDto> categoryDtoList = categoryService.getCategoryAndProduct();
+        List<Product> products = productService.filterLowPrice();
+        model.addAttribute("categoryDtoList", categoryDtoList);
+        model.addAttribute("products", products);
+        model.addAttribute("categories", categories);
+        return "filter-low-price";
     }
 
 }

@@ -42,9 +42,10 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="login-box">
-                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">
-                        <option><a href="signup.html">Sign In </a></option>
-                        <option><a href="signup.html">Sign Up </a></option>
+                    <select id="" class="selectpicker show-tick form-control" data-placeholder="Sign In"
+                            onchange="location = this.value;">
+                        <option value="http://localhost:8020/shop/login">Sign In</option>
+                        <option value="http://localhost:8020/shop/register">Sign Up</option>
                     </select>
                 </div>
                 <div class="text-slid-box">
@@ -140,19 +141,22 @@
             <li class="cart-box">
                 <ul class="cart-list">
                     <li>
-                        <a href="#" class="photo"><img th:src="@{/images/Lobster 02 - Lobster rolls.jpg}" class="cart-thumb"
+                        <a href="#" class="photo"><img th:src="@{/images/Lobster 02 - Lobster rolls.jpg}"
+                                                       class="cart-thumb"
                                                        alt=""/></a>
                         <h6><a href="#">Lobster rolls </a></h6>
                         <p>1 - <span class="price">$80.00</span></p>
                     </li>
                     <li>
-                        <a href="#" class="photo"><img th:src="@{/images/Octopus 05 - Octopus with Black Bean Pear Sauce.jpg}"
-                                                       class="cart-thumb" alt=""/></a>
+                        <a href="#" class="photo"><img
+                                th:src="@{/images/Octopus 05 - Octopus with Black Bean Pear Sauce.jpg}"
+                                class="cart-thumb" alt=""/></a>
                         <h6><a href="#">Octopus with Black Bean</a></h6>
                         <p>1 - <span class="price">$60.00</span></p>
                     </li>
                     <li>
-                        <a href="#" class="photo"><img th:src="@{/images/Crab 02 - Crab Toast.jpg}" class="cart-thumb" alt=""/></a>
+                        <a href="#" class="photo"><img th:src="@{/images/Crab 02 - Crab Toast.jpg}" class="cart-thumb"
+                                                       alt=""/></a>
                         <h6><a href="#">Crab Toast</a></h6>
                         <p>1 - <span class="price">$40.00</span></p>
                     </li>
@@ -174,11 +178,12 @@
     <div class="col-12 col-sm-8 text-center text-sm-left">
         <div class="toolbar-sorter-right">
             <span>Sort by </span>
-            <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+            <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD"
+                    onchange="location = this.value;">
                 <option data-display="Select">Nothing</option>
-                <option value="2">High Price → High Price</option>
-                <option value="3">Low Price → High Price</option>
-                <option value="4">Best Selling</option>
+                <option value="http://localhost:8020/shop/high-price">High Price → Low Price</option>
+                <option value="http://localhost:8020/shop/low-price">Low Price → High Price</option>
+                <option data-display="Select">Best Selling</option>
             </select>
         </div>
         <p>Showing all results</p>
