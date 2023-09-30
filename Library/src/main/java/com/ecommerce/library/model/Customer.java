@@ -1,12 +1,14 @@
 package com.ecommerce.library.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Collection;
 import java.util.List;
+
 
 @Data
 @AllArgsConstructor
@@ -18,7 +20,10 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
     private Long id;
+
+    @Size(min = 3, max = 15, message = "First name should be have 3-15 characters")
     private String firstName;
+    @Size(min = 3, max = 15, message = "First name should be have 3-15 characters")
     private String lastName;
     private String username;
     private String country;

@@ -44,7 +44,9 @@
                 <div class="login-box">
                     <select id="" class="selectpicker show-tick form-control" data-placeholder="Sign In"
                             onchange="location = this.value;">
-                        <option value="http://localhost:8020/shop/login">Sign In</option>
+                        <option th:text="${session.username != null} ? ${session.username} : 'Authentication'"></option>
+                        <option th:if="${session.username == null}" value="http://localhost:8020/shop/login">Sign In</option>
+                        <option value="http://localhost:8020/shop/login?logout">Logout</option>
                         <option value="http://localhost:8020/shop/register">Sign Up</option>
                     </select>
                 </div>
