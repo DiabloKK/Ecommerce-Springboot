@@ -46,7 +46,7 @@
                             onchange="location = this.value;">
                         <option th:text="${session.username != null} ? ${session.username} : 'Authentication'"></option>
                         <option th:if="${session.username == null}" value="http://localhost:8020/shop/login">Sign In</option>
-                        <option value="http://localhost:8020/shop/login?logout">Logout</option>
+                        <option th:if="${session.username != null}" value="http://localhost:8020/shop/logout">Logout</option>
                         <option value="http://localhost:8020/shop/register">Sign Up</option>
                     </select>
                 </div>
@@ -125,9 +125,9 @@
             <!-- Start Atribute Navigation -->
             <div class="attr-nav">
                 <ul>
-                    <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                    <li class="search"><a><i class="fa fa-search"></i></a></li>
                     <li class="side-menu">
-                        <a href="#">
+                        <a th:href="@{/cart}">
                             <i class="fa fa-shopping-bag"></i>
                             <span class="badge">3</span>
                             <p>My Cart</p>
@@ -163,7 +163,7 @@
                         <p>1 - <span class="price">$40.00</span></p>
                     </li>
                     <li class="total">
-                        <a href="cart.html" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                        <a th:href="@{/cart}" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
                         <span class="float-right"><strong>Total</strong>: $180.00</span>
                     </li>
                 </ul>

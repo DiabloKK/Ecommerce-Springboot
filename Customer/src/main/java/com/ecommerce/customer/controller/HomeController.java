@@ -25,13 +25,12 @@ public class HomeController {
 
     @RequestMapping(value = {"/index", "/"}, method = RequestMethod.GET)
     public String home(Model model, Principal principal, HttpSession session) {
-        System.out.println(principal);
         if(principal != null) {
-            System.out.println(principal.getName());
+            System.out.println("true");
             session.setAttribute("username", principal.getName());
         } else {
             session.removeAttribute("username");
-            System.out.println(session.getAttribute("username"));
+            System.out.println("false");
         }
         return "home";
     }
