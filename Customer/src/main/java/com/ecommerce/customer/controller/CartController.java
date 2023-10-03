@@ -12,9 +12,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -59,6 +57,40 @@ public class CartController {
         ShoppingCart cart = cartService.addItemToCart(product, quantity, customer);
 
         return "redirect:" + request.getHeader("Referer");
+    }
+
+    @RequestMapping(value = "/update-cart", method = RequestMethod.POST, params = "action=update")
+    public String updateCart(@RequestParam("quantity") int quantity,
+                             @RequestParam("id") Long productId,
+                             Model model,
+                             Principal principal) {
+        if(principal == null) {
+            return "redirect:/login";
+        } else {
+            String username = principal.getName();
+            Customer customer = customerService.findByUsername(username);
+            Product product = productService.getProductById(productId);
+            ShoppingCart cart = cartService.updateItemInCart(product, quantity, customer);
+
+            model.addAttribute("shoppingCart", cart);
+            return "redirect:/cart";
+        }
+    }
+
+    @RequestMapping(value = "/update-cart", method = RequestMethod.POST, params = "action=delete")
+    public String deleteItemFromCart(@RequestParam("id") Long productId,
+                                     Model model,
+                                     Principal principal) {
+        if(principal == null) {
+            return "redirect:/login";
+        } else {
+            String username = principal.getName();
+            Customer customer = customerService.findByUsername(username);
+            Product product = productService.getProductById(productId);
+            ShoppingCart cart = cartService.deleteItemFromCart(product, customer);
+            model.addAttribute("shoppingCart", cart);
+            return "redirect:/cart";
+        }
     }
 
 }

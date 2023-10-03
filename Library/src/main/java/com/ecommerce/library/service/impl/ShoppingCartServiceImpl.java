@@ -67,6 +67,50 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return cartRepository.save(cart);
     }
 
+    @Override
+    public ShoppingCart updateItemInCart(Product product, int quantity, Customer customer) {
+        ShoppingCart cart = customer.getShoppingCart();
+
+        Set<CartItem> cartItems = cart.getCartItem();
+
+        CartItem item = findCartItem(cartItems, product.getId());
+
+        item.setQuantity(quantity);
+        item.setTotalPrices(quantity * product.getCostPrice());
+        itemRepository.save(item);
+
+        int totalItems = totalItems(cartItems);
+        double totalPrice = totalPrice(cartItems);
+
+
+        cart.setTotalItems(totalItems);
+        cart.setTotalPrices(totalPrice);
+
+        return cartRepository.save(cart);
+    }
+
+    @Override
+    public ShoppingCart deleteItemFromCart(Product product, Customer customer) {
+        ShoppingCart cart = customer.getShoppingCart();
+
+        Set<CartItem> cartItems = cart.getCartItem();
+
+        CartItem item = findCartItem(cartItems, product.getId());
+
+        cartItems.remove(item);
+
+        itemRepository.delete(item);
+
+        double totalPrice = totalPrice(cartItems);
+        int totalItems = totalItems(cartItems);
+
+        cart.setCartItem(cartItems);
+        cart.setTotalPrices(totalPrice);
+        cart.setTotalItems(totalItems);
+
+        return cartRepository.save(cart);
+    }
+
     private CartItem findCartItem(Set<CartItem> cartItems, Long productId) {
         if (cartItems == null) {
             return null;

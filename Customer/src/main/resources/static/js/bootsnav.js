@@ -196,13 +196,13 @@
             // ------------------------------------------------------------------------------ //
             // Toggle Side Menu
             // ------------------------------------------------------------------------------ //
-            $("nav.navbar.bootsnav .attr-nav").each(function(){  
-                $("li.side-menu > a", this).on("click", function(e){
-                    e.preventDefault();
-                    $("nav.navbar.bootsnav > .side").toggleClass("on");
-                    $("body").toggleClass("on-side");
-                });
-            });
+//            $("nav.navbar.bootsnav .attr-nav").each(function(){
+//                $("li.side-menu > a", this).on("click", function(e){
+//                    e.preventDefault();
+//                    $("nav.navbar.bootsnav > .side").toggleClass("on");
+//                    $("body").toggleClass("on-side");
+//                });
+//            });
             $(".side .close-side").on("click", function(e){
                 e.preventDefault();
                 $("nav.navbar.bootsnav > .side").removeClass("on");
