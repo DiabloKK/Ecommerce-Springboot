@@ -28,7 +28,7 @@ public class CartController {
     private ShoppingCartService cartService;
 
     @GetMapping("/cart")
-    public String cart(Model model, Principal principal) {
+    public String cart(Model model, Principal principal, HttpSession  session) {
         if (principal == null) {
             return "redirect:/login";
         }
@@ -37,7 +37,10 @@ public class CartController {
         if (shoppingCart == null) {
             model.addAttribute("check", "No item in your cart");
         }
+        session.setAttribute("totalItems", shoppingCart.getTotalItems());
         model.addAttribute("shoppingCart", shoppingCart);
+        model.addAttribute("subTotal", shoppingCart.getTotalPrices());
+
         return "cart";
     }
 
