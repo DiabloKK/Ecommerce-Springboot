@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<!-- Basic -->
+
+<head th:replace="fragments::head">
+</head>
+
+<body>
+<!-- Start Main Top -->
+<div th:replace="fragments::main-top"></div>
+<!-- End Main Top -->
+
+<!-- Start Main Top -->
+<header th:replace="fragments::main-header"></header>
+<!-- End Main Top -->
+
+<!-- Start Top Search -->
+<div th:replace="fragments::top-search"></div>
+<!-- End Top Search -->
+
+<!-- Start All Title Box -->
+<div th:replace="fragments::instagram-box"></div>
+<!-- End All Title Box -->
+<section class="vh-100 bg-image mt-3 mb-3">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-5">
+                            <div class="text-center alert alert-warning" th:if="${error}">
+                                <p th:text="${error}"></p>
+                            </div>
+                            <h2 class="text-uppercase text-center mb-5 formTitle">Personal Information</h2>
+
+                            <form th:action="@{/update-infor}" method="put" th:object="${customer}">
+
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="firstName"
+                                           th:field="*{firstName}" name="firstName" readonly
+                                           class="form-control form-control-lg"/>
+                                    <label class="form-label" for="firstName"
+                                    >First Name *</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="lastName"
+                                           th:field="*{lastName}" name="lastName" readonly
+                                           class="form-control form-control-lg"/>
+                                    <label class="form-label" for="lastName"
+                                    >Last Name *</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="username"
+                                           th:field="*{username}" name="username" readonly
+                                           class="form-control form-control-lg"/>
+                                    <label class="form-label" for="username"
+                                    >Username *</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="number" id="phoneNumber"
+                                           th:field="*{phoneNumber}" name="phoneNumber"
+                                           class="form-control form-control-lg"/>
+                                    <label class="form-label" for="phoneNumber"
+                                    >Phone Number
+                                        *</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="address"
+                                           th:field="*{address}" name="address"
+                                           class="form-control form-control-lg"/>
+                                    <label class="form-label" for="address">Address
+                                        *</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="city"
+                                           th:field="*{city}" name="city"
+                                           class="form-control form-control-lg"/>
+                                    <label class="form-label" for="city">City *</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="country"
+                                           th:field="*{country}" name="country"
+                                           class="form-control form-control-lg"/>
+                                    <label class="form-label" for="country">Country
+                                        *</label>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit"
+                                            class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
+                                        Save
+                                    </button>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- End copyright  -->
+
+<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+<div th:replace="fragments::script"></div>
+</body>
+
+</html>

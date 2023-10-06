@@ -34,9 +34,8 @@ public class Customer {
     @Column(name = "image", columnDefinition = "MEDIUMBLOB")
     private String image;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "city_id", referencedColumnName = "city_id")
-    private City city;
+    @Column(name = "city")
+    private String city;
 
     @OneToOne(mappedBy = "customer")
     private ShoppingCart shoppingCart;
@@ -48,4 +47,23 @@ public class Customer {
             joinColumns = @JoinColumn(name = "customer_id", referencedColumnName = "customer_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
     private Collection<Role> roles;
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", country='" + country + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", password='" + password + '\'' +
+                ", image='" + image + '\'' +
+                ", city='" + city + '\'' +
+                ", shoppingCart=" + shoppingCart +
+                ", orders=" + orders +
+                ", roles=" + roles +
+                '}';
+    }
 }
