@@ -1,6 +1,7 @@
 package com.ecommerce.customer.controller;
 
 import com.ecommerce.library.model.Customer;
+import com.ecommerce.library.model.ShoppingCart;
 import com.ecommerce.library.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,10 +30,18 @@ public class OrderController {
             model.addAttribute("customer", customer);
             model.addAttribute("error", "You must fill the information after checkout!");
             return "account";
+        } else {
+            model.addAttribute("customer", customer);
+            ShoppingCart cart = customer.getShoppingCart();
+            model.addAttribute("cart", cart);
         }
-
-
 
         return "checkout";
     }
+
+    @GetMapping("/order")
+    public String order() {
+        return "order";
+    }
+
 }
