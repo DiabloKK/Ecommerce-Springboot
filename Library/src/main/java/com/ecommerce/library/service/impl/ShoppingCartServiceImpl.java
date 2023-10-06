@@ -56,6 +56,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 itemRepository.save(cartItem);
             }
         }
+        cartItems.add(cartItem);
         cart.setCartItem(cartItems);
         int totalItem = totalItems(cart.getCartItem());
         double totalPrice = totalPrice(cart.getCartItem());

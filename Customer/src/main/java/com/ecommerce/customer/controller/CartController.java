@@ -29,17 +29,18 @@ public class CartController {
 
     @GetMapping("/cart")
     public String cart(Model model, Principal principal, HttpSession  session) {
-        if (principal == null) {
-            return "redirect:/login";
-        }
+
         Customer customer = customerService.findByUsername(principal.getName());
         ShoppingCart shoppingCart = customer.getShoppingCart();
         if (shoppingCart == null) {
             model.addAttribute("check", "No item in your cart");
+            session.setAttribute("totalItems", 0);
+            model.addAttribute("subTotal", 0);
+        } else {
+            session.setAttribute("totalItems", shoppingCart.getTotalItems());
+            model.addAttribute("shoppingCart", shoppingCart);
+            model.addAttribute("subTotal", shoppingCart.getTotalPrices());
         }
-        session.setAttribute("totalItems", shoppingCart.getTotalItems());
-        model.addAttribute("shoppingCart", shoppingCart);
-        model.addAttribute("subTotal", shoppingCart.getTotalPrices());
 
         return "cart";
     }
@@ -59,7 +60,7 @@ public class CartController {
 
         ShoppingCart cart = cartService.addItemToCart(product, quantity, customer);
 
-        return "redirect:" + request.getHeader("Referer");
+        return "redirect:/home";
     }
 
     @RequestMapping(value = "/update-cart", method = RequestMethod.POST, params = "action=update")
@@ -93,6 +94,20 @@ public class CartController {
             ShoppingCart cart = cartService.deleteItemFromCart(product, customer);
             model.addAttribute("shoppingCart", cart);
             return "redirect:/cart";
+        }
+    }
+
+    public boolean checkLogin(Principal principal, HttpSession session) {
+        if(principal != null) {
+            session.setAttribute("username", principal.getName());
+            Customer customer = customerService.findByUsername(principal.getName());
+            ShoppingCart cart = customer.getShoppingCart();
+            if(cart != null) session.setAttribute("totalItems", cart.getTotalItems());
+            else  session.setAttribute("totalItems", 0);
+            return true;
+        } else {
+            session.removeAttribute("username");
+            return false;
         }
     }
 

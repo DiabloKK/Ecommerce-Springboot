@@ -1,5 +1,6 @@
 package com.ecommerce.customer.controller;
 
+import com.ecommerce.customer.helper.Helper;
 import com.ecommerce.library.model.Category;
 import com.ecommerce.library.dto.ProductDto;
 import com.ecommerce.library.model.Customer;
@@ -31,25 +32,34 @@ public class HomeController {
 
     @RequestMapping(value = {"/index", "/"}, method = RequestMethod.GET)
     public String home(Model model, Principal principal, HttpSession session) {
-        if(principal != null) {
-            session.setAttribute("username", principal.getName());
-            Customer customer = customerService.findByUsername(principal.getName());
-            ShoppingCart cart = customer.getShoppingCart();
-            session.setAttribute("totalItems", cart.getTotalItems());
-
-        } else {
-            session.removeAttribute("username");
-        }
+        checkLogin(principal, session);
         return "home";
     }
 
     @GetMapping("/home")
-    public String index(Model model) {
+    public String index(Model model, Principal principal, HttpSession session) {
+        if(!checkLogin(principal, session)) {
+            return "redirect:/login";
+        }
         List<Category> categories = categoryService.findAll();
         List<ProductDto> productDtos = productService.findAll();
         model.addAttribute("categories", categories);
         model.addAttribute("products", productDtos);
         return "index";
+    }
+
+    public boolean checkLogin(Principal principal, HttpSession session) {
+        if(principal != null) {
+            session.setAttribute("username", principal.getName());
+            Customer customer = customerService.findByUsername(principal.getName());
+            ShoppingCart cart = customer.getShoppingCart();
+            if(cart != null) session.setAttribute("totalItems", cart.getTotalItems());
+            else  session.setAttribute("totalItems", 0);
+            return true;
+        } else {
+            session.removeAttribute("username");
+            return false;
+        }
     }
 
 }
